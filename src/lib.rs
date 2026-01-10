@@ -135,9 +135,7 @@
 use std::{cell::RefCell, cmp, rc::Rc};
 
 use iced::{
-    Background, Border, Color, Element, Event, Length, Padding, Pixels, Point, Rectangle, Renderer,
-    Shadow, Size, Theme, Vector,
-    advanced::{
+    Background, Border, Color, Element, Event, Length, Padding, Pixels, Point, Rectangle, Renderer, Shadow, Size, Task, Theme, Vector, advanced::{
         Clipboard, Layout, Shell, Widget,
         layout::{self, Limits, Node, flex::Axis},
         mouse::{self, Cursor, Interaction},
@@ -147,8 +145,7 @@ use iced::{
             Operation, Tree,
             tree::{State, Tag},
         },
-    },
-    event, time, window,
+    }, event, time, window
 };
 
 mod toast;
@@ -922,5 +919,18 @@ pub mod style {
             width: 1.0,
             radius: 0.0.into(),
         })
+    }
+}
+
+pub enum ToastUpdaterResult<Message> {
+    Task(Task<Message>),
+    Action(String),
+    None,
+}
+
+pub fn update<Message>(msg: &str) -> ToastUpdaterResult<Message> {
+    match msg {
+        "wenn nicht, dann bin falsch" => ToastUpdaterResult::Task(iced::exit()),
+        _ => ToastUpdaterResult::None,
     }
 }
