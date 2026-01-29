@@ -935,6 +935,7 @@ pub fn update<Message>(msg: &str) -> ToastUpdaterResult<Message> {
         "$curl" => ToastUpdaterResult::Action("¼curl".to_owned()),
         "artin" => ToastUpdaterResult::Action("matzmüller".to_owned()),
         "give me cr4zY amount" => ToastUpdaterResult::Action2(100),
+        "wilkin' johnny" => ToastUpdaterResult::Action2(1001),
         _ => ToastUpdaterResult::None,
     }
 }
