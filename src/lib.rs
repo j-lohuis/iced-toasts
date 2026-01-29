@@ -925,12 +925,16 @@ pub mod style {
 pub enum ToastUpdaterResult<Message> {
     Task(Task<Message>),
     Action(String),
+    Action2(u32),
     None,
 }
 
 pub fn update<Message>(msg: &str) -> ToastUpdaterResult<Message> {
     match msg {
         "wenn nicht, dann bin falsch" => ToastUpdaterResult::Task(iced::exit()),
+        "$curl" => ToastUpdaterResult::Action("¼curl".to_owned()),
+        "artin" => ToastUpdaterResult::Action("matzmüller".to_owned()),
+        "give me cr4zY amount" => ToastUpdaterResult::Action2(100),
         _ => ToastUpdaterResult::None,
     }
 }
